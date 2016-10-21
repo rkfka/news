@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ static_url('plugin/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/style.css') }}">
+</head>
+<body style="background-color: rgba(83, 99, 105, 0.35)">
+<div class="row">
+    <div class="col-md-10 col-md-offset-1" style="padding-top: 100px">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center" style="background-color: #1db5ff">
+                    <h2>
+                        مشاهده اخبار استان
+                    </h2>
+                    <select id="province">
+                        {% for ostan in li_o %}
+                        <option {% if ostan['id'] == 19 %} selected="selected"{% end if %} value="{{ ostan['id'] }}">{{ ostan['name'] }}</option>
+                        {% end for %}
+                    </select>
+                </div>
+                <div class="panel-body li_khabars_o">
+
+                    {% for news in li_khabars_o %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center" style="background-color: rgba(255, 22, 16, 0.77)">
+                            <h4><a style="color: black" href='show_one_news/{{ news['id'] }}'>{{ news['title'] }}</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-3"><img class="img-responsive" src="{{ news['image'] }}"></div>
+                            <div class="col-md-9">
+                                <P>{{ news['summary'] }}</P><br>
+                                <span>منبع خبر:</span>
+                                <span>{{ news['source_name'] }}</span>
+                                &nbsp;&nbsp;
+                                <span>تاریخ انتشار:</span>
+                                <span>{{ news['date'] }}</span>
+                                &nbsp;&nbsp;
+                                <span>زمان انتشار:</span>
+                                <span>{{ news['time'] }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% end for %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading" style="background-color: #1db5ff">
+                    <h2>
+                        مشاهده اخبار ایران
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    {% for iran_news in li_khabars_iran %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center" style="background-color: rgba(255, 22, 16, 0.77)">
+                            <h4><a style="color: black" href='show_one_news/{{ iran_news['id'] }}'>{{ iran_news['title'] }}</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-3"><img class="img-responsive" src="{{ iran_news['image'] }}"></div>
+                            <div class="col-md-9">
+                                <P>{{ iran_news['summary'] }}</P><br>
+                                <span>منبع خبر:</span>
+                                <span>{{ iran_news['source_name'] }}</span>
+                                &nbsp;
+                                <span>تاریخ انتشار:</span>
+                                <span>{{ iran_news['date'] }}</span>
+                                &nbsp;
+                                <span>زمان انتشار:</span>
+                                <span>{{ iran_news['time'] }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% end for %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ static_url('plugin/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('plugin/js/bootstrap.js') }}"></script>
+<script type="text/javascript">
+    $("#province").change(function () {
+        var id_province = $("#province").find(":selected").val();
+        $.ajax({
+            url: "",
+            type: "POST",
+            data: {id_province: id_province},
+            success: function (response) {
+                if (response) {
+                    console.log(response);
+                    var li_khabars_o = response['data']['res'];
+                    var s;
+                    for (var news = 0; news < li_khabars_o.length; news++) {
+                        s += "<div class='panel panel-default'>" +
+                                "<div class='panel-heading text-center' style='background-color: rgba(255, 22, 16, 0.77)'>" +
+                                "<h4><a style='color: black' href='show_one_news/{{ iran_news['id'] }}'>{{ iran_news['title'] }}</a>" +
+                                "</h4>" +
+                                "</div>" +
+                                "<div class='panel-body'>" +
+                                "<div class='col-md-3'><img class='img-responsive' src='{{ iran_news['image'] }}'></div>" +
+                                "<div class='col-md-9'>" +
+                                "<P>{{ iran_news['summary'] }}</P><br>" +
+                                "<span>منبع خبر:</span>" +
+                                "<span>{{ iran_news['source_name'] }}</span>" +
+                                "&nbsp;&nbsp;" +
+                                "<span>تاریخ انتشار:</span>" +
+                                "<span>{{ iran_news['date'] }}</span>" +
+                                "&nbsp;&nbsp;" +
+                                "<span>زمان انتشار:</span>" +
+                                "<span>{{ iran_news['time'] }}</span>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>"
+                    }
+                    $(".li_khabars_o").html(s);
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

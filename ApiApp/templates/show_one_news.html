@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ static_url('plugin/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('css/style.css') }}">
+</head>
+<body style="background-color: rgba(83, 99, 105, 0.35)">
+<div class="row">
+    <div class="col-md-10 col-md-offset-1" style="padding-top: 100px">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading" style="background-color: #1db5ff">
+                <h3>
+                    {{ one_news['title'] }}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h5>
+                            {{ one_news['summary'] }}
+                        </h5>
+                        <p>
+                            {{ one_news['body'] }}
+                        </p>
+                        <span>منبع خبر:</span>
+                        <span>{{ one_news['source_name'] }}</span>
+                        &nbsp;&nbsp;
+                        <span>تاریخ انتشار:</span>
+                        <span>{{ one_news['date'] }}</span>
+                        &nbsp;&nbsp;
+                        <span>زمان انتشار:</span>
+                        <span>{{ one_news['time'] }}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <img class="img-responsive" src="{{ one_news['image'] }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ static_url('plugin/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('plugin/js/bootstrap.js') }}"></script>
+
+</body>
+</html>
