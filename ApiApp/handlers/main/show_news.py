@@ -26,7 +26,7 @@ class ShowNewsHandler(WebBaseHandler):
 
     def post(self, *args, **kwargs):
         id_province = self.get_argument("id_province", None)
-        li_khabars_o = urllib.urlopen("http://www.servicefarsi.com/api/news/6678735804226/4/item=18,page=1")
+        li_khabars_o = urllib.urlopen("http://www.servicefarsi.com/api/news/6678735804226/4/page=1,item="+id_province)
         li_khabars_o = li_khabars_o.read()
         li_khabars_o = json.loads(li_khabars_o)
         self.write({"data": li_khabars_o})
