@@ -17,7 +17,7 @@
                     </h2>
                     <select id="province">
                         {% for ostan in li_o %}
-                        <option {% if ostan['id'] == "19" %} selected="selected"{% end if %} value="{{ ostan['id'] }}">{{ ostan['name'] }}</option>
+                        <option {% if ostan['id'] == "20" %} selected="selected"{% end if %} value="{{ ostan['id'] }}">{{ ostan['name'] }}</option>
                         {% end for %}
                     </select>
                 </div>
@@ -96,9 +96,9 @@
             success: function (response) {
                 if (response) {
                     var li_khabars_o = response['data']['res'];
-                    console.log(li_khabars_o[0]['image']);
                     var s;
                     for (var news = 0; news < li_khabars_o.length; news++) {
+
                         s += "<div class='panel panel-default'>" +
                                 "<div class='panel-heading text-center' style='background-color: rgba(255, 22, 16, 0.77)'>" +
                                 "<h4><a style='color: black' href='show_one_news/"+ li_khabars_o[news]['id']+"'>"+ li_khabars_o[news]['title'] +"</a>" +

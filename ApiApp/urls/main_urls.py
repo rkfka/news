@@ -8,5 +8,5 @@ __author__ = 'ReS4'
 url_patterns = [
     ("/show_news", show_news.ShowNewsHandler, None, "show_news"),
     ("/show_one_news/([\w+]-(\d+))", show_one_news.ShowOneNewsHandler, None, "a:show_one_news"),
-    ("/edit_text", show_one_news.ShowOneNewsHandler, None, "a:show_one_news"),
+    ("/edit_text", show_one_news.ShowOneNewsHandler),
 ]

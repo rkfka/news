@@ -13,7 +13,7 @@ class ShowNewsHandler(WebBaseHandler):
         li_ostan = li_ostan.read()
         li_ostan = json.loads(li_ostan)
 
-        li_khabars_o = urllib.urlopen("http://www.servicefarsi.com/api/news/6678735804226/4/item=19,page=1")
+        li_khabars_o = urllib.urlopen("http://www.servicefarsi.com/api/news/6678735804226/4/item=20,page=1")
         li_khabars_o = li_khabars_o.read()
         li_khabars_o = json.loads(li_khabars_o)
 
